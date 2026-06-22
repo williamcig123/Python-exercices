@@ -1,0 +1,11 @@
+# A program to create your own story.
+
+place = input("Enter the place you like the most: ")
+felling = input("Describe how you felt: ")
+adjective = input("Describe how the place was:")
+felling2 = input("How you was at the end: ")
+
+print(f"Today, i went to my favorite place which is {place}")
+print(f"I was very {felling}")
+print(f"The {place} was very {adjective}")
+print(f"When i left, i felt {felling2}")
