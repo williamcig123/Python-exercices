@@ -1,0 +1,22 @@
+# Exercise 1: Calculate the area of a rectangle using the length multiplied by the width
+
+print("Hello, we´re here to help you find the area of a rectangle !")
+name = input("Enter your name: ")
+while True:
+    try:
+        # Python will execute these lines first
+        length = float(input("Enter the length: "))
+        width = float(input("Enter the width: "))
+
+        # Stop the use of negative numbers
+        if length <=0 or width <=0:
+            print("You can't calculate an area with negative numbers or zeros")
+            continue
+
+        area = length * width
+        print(f"{name}, the area of the rectangle is {area}")
+        break
+
+    except ValueError:
+        # In the case the user prints string or boolean.
+        print("You can only enter numbers to calculate the area of a rectangle")
