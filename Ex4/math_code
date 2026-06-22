@@ -1,0 +1,18 @@
+# Calculate the area, circumference of a circle and a hypotenuse of a triangle
+import math
+print("Welcome to your circle and hypotenuse math program !")
+
+radius = float(input("Enter the value of the radius: "))
+area = math.pi * pow(radius, 2)
+circumference = 2 * math.pi * radius
+print(f"The circumference of the circle is: {round(circumference, 3)}\nAnd the area is: {round(area, 3)}")
+
+print("Now, let's calculate the hypotenuse of a triangle !")
+print("Remember, the hypotenuse is the opposite side of the right angle")
+
+a = float(input("Enter the side of 'A': "))
+b = float(input("Enter the side of 'B': "))
+h  = math.sqrt(pow(a, 2) + pow(b, 2))
+print(f"The hypotenuse of the triangle is: {int(h)}")
+
+print("The formula to the circumference is: C = 2.π.R, the area is: π.R² and the hypotenuse is square of a² + b²")
