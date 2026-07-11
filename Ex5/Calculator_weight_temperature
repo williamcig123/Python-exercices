@@ -1,0 +1,47 @@
+#A calculator, weight conversion and temperature conversion.
+print("Welcome to our program of conversion and calculating numbers !")
+from builtins import float
+
+operator = input("Select one of those four operators: +, -, * or  /\n: ")
+num1 = float(input("Enter the 1st number: "))
+num2 = float(input("Enter the 2nd number: "))
+
+if operator == "+":
+    print(round(num1 + num2,3))
+elif operator == "-":
+    print(round(num1 - num2,3))
+elif operator == "*":
+    print(round(num1 * num2,3))
+elif operator == "/":
+    print(round(num1 / num2,3))
+else:
+    print(f"{operator} is not valid")
+
+
+print("Now, let's make the weight conversion")
+
+weight = float(input("Enter your weight: "))
+select = int(input("Print '1' to convert pound to kilogram or '2' to convert kilogram to pound: "))
+
+if select == 1:
+    kg = weight / 2.205
+    unit = "kg."
+    print(f"Your weight is {round(kg,1)}{unit}")
+elif select == 2:
+    pound = weight * 2.205
+    unit = "lbs."
+    print(f"Your weight is {round(pound,1)}{unit}")
+else:
+    print("Enter a valid option")
+
+print("And now the temperature conversion !")
+
+unit = input("Enter the temperature in Celsius(C) or Fahrenheit(F) to make the conversion: ")
+temp = float(input("Enter the current temperature: "))
+
+if unit == "C" or unit == "Celsius":
+    f = round((temp * 9/5) + 32, 1)
+    print(f"The temperature in Fahrenheit is {f}")
+elif unit == "F" or unit == "Fahrenheit":
+    c = round((temp - 32) * 5/9, 1)
+    print(f"The temperature in Celsius is {c}")
