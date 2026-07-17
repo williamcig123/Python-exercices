@@ -1,5 +1,40 @@
 # Exercise 1: Calculate the area of a rectangle using the length multiplied by the width
 
+import mysql.connector
+
+# 1. Configure the database connection
+# Switch the values below according to your local mysql environment
+config = {
+    'host': 'localhost',
+    'user': 'root',  # Mysql's user
+    'password': 'password', # Sql's password
+}
+
+try:
+    connection = mysql.connector.connect(**config)
+    cursor = connection.cursor()
+
+    cursor.execute("CREATE DATABASE IF NOT EXISTS Ex1") # Creating database Ex1
+    cursor.execute("USE Ex1") # From now on, mysql will use Ex1 database
+
+    # Create the table automatically if she doesn't exist
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS Rectangle_area (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            user_name VARCHAR(15),
+            length FLOAT,
+            width FLOAT,
+            area FLOAT,
+            interaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    """)
+    connection.commit()
+except mysql.connector.Error as error:
+    print(f"Failed to create table: error {error}")
+    exit() # Exit the program if it doesn't connect to the database
+
+    # --The python original code with sql adaptions--
+
 print("Hello, we´re here to help you find the area of a rectangle !")
 name = input("Enter your name: ")
 while True:
@@ -15,8 +50,27 @@ while True:
 
         area = length * width
         print(f"{name}, the area of the rectangle is {area}")
+
+        # Save the data in mysql
+        command_sql = """
+            INSERT INTO Rectangle_area(user_name, length, width, area)
+            VALUES (%s, %s, %s, %s)
+        """
+        data = (name, length, width, area)
+
+        cursor.execute(command_sql, data)
+        connection.commit() # It confirms the data's recording
+
+        print("Data save successfully")
         break
 
     except ValueError:
         # In the case the user prints string or boolean.
         print("You can only enter numbers to calculate the area of a rectangle")
+    except mysql.connector.Error as error_data:
+        print(f"Error at saving in the database: {error_data}")
+        break
+
+# Close the connections at the end
+cursor.close()
+connection.close()
